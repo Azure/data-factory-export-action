@@ -32,8 +32,9 @@ steps:
   - name: Export ARM Template
     id: export
     uses: Azure/data-factory-export-action@v1.0.0
-    # path: ./mydir [optional]
-    # id: <data factory resource ID> [optional]
+    # with:
+    #   path: ./mydir [optional]
+    #   id: <data factory resource ID> [optional]
 
   - name: Publish ARM template
     uses: actions/upload-artifact@v2
