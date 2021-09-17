@@ -1,14 +1,59 @@
-# Project
+# Azure Data Factory Export Action
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+GitHub Action that exports all the Azure Data Factory resources stored in your Git repository to an ARM Template using the [Azure Data Factory utilities](https://www.npmjs.com/package/@microsoft/azure-data-factory-utilities) package.
 
-As the maintainer of this project, please make a few updates:
+## When to use
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+The action is particularly useful on deployment scenarios, where a step can be added in a workflow to generate a Data Factory ARM template from a Git repository branch and then use it as the source for an ARM template deployment.
+
+## Getting Started
+
+### Prerequisites
+
+1. Ensure your Data Factory is connected with a Git repository. For more info, see [Connect to a Git repository](https://docs.microsoft.com/en-us/azure/data-factory/source-control#connect-to-a-git-repository) and [Bicep & ARM Template formats](https://docs.microsoft.com/en-us/azure/templates/microsoft.datafactory/factories?tabs=bicep).
+
+2. Ensure the following `package.json` file exists in the same directory that contains your Data Factory resources in the Git repository:
+
+    ```json
+    {
+      "scripts":{
+        "build":"node node_modules/@microsoft/azure-data-factory-utilities/lib/index"
+      },
+      "dependencies":{
+        "@microsoft/azure-data-factory-utilities":"^0.1.5"
+      }
+    }
+    ```
+
+### Example Usage
+
+```yml
+steps:
+  - name: Export ARM Template
+    id: export
+    uses: Azure/data-factory-export@v1.0.0
+    # path: ./mydir [optional]
+    # id: <data factory resource ID> [optional]
+
+  - name: Publish ARM template
+    uses: actions/upload-artifact@v2
+    with:
+      name: my-artifact
+      path: ${{ steps.export.outputs.arm-template-directory }}
+      if-no-files-found: error
+```
+
+> Note: The action creates an `armTemplate` subdirectory dynamically and exports the ARM Template (`ARMTemplateForFactory.json`) inside it.
+
+### Inputs
+
+- `path` (optional): Directory that contains all Data Factory resources. Defaults to `./` directory.
+
+- `id` (optional): Data Factory resource ID. Defaults to `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourceGroup/providers/Microsoft.DataFactory/factories/dataFactory`.
+
+### Outputs
+
+- `arm-template-directory`: Directory where the generated ARM template is stored.
 
 ## Contributing
 
