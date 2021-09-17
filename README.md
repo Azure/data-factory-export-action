@@ -31,7 +31,7 @@ The action is particularly useful on deployment scenarios, where a step can be a
 steps:
   - name: Export ARM Template
     id: export
-    uses: Azure/data-factory-export@v1.0.0
+    uses: Azure/data-factory-export-action@v1.0.0
     # path: ./mydir [optional]
     # id: <data factory resource ID> [optional]
 
