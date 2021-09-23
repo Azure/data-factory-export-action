@@ -16,7 +16,11 @@ echo "Validating $dataFactoryId at $(pwd)..."
 npm run build validate $(pwd) $dataFactoryId
 echo "Validation completed."
 
-armTemplateOutputDirectory="$dataFactoryDirectory/$armTemplateOutputSubDirectory"
+if [[ "$dataFactoryDirectory" == */ ]]; then
+  armTemplateOutputDirectory="$dataFactoryDirectory$armTemplateOutputSubDirectory"
+else
+  armTemplateOutputDirectory="$dataFactoryDirectory/$armTemplateOutputSubDirectory"
+fi
 
 echo "Exporting $dataFactoryId to $armTemplateOutputDirectory..."
 npm run build export $(pwd) $dataFactoryId $armTemplateOutputSubDirectory
