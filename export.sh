@@ -26,4 +26,4 @@ echo "Exporting $dataFactoryId to $armTemplateOutputDirectory..."
 node ./node_modules/@microsoft/azure-data-factory-utilities/lib/index export $(pwd) $dataFactoryId $armTemplateOutputSubDirectory
 echo "Export completed."
 
-echo "::set-output name=arm-template-directory::$armTemplateOutputDirectory"
+echo "arm-template-directory=$armTemplateOutputDirectory" >> $GITHUB_OUTPUT
