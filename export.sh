@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 dataFactoryDirectory=$1
 dataFactoryId=$2
@@ -26,4 +27,4 @@ echo "Exporting $dataFactoryId to $armTemplateOutputDirectory..."
 node ./node_modules/@microsoft/azure-data-factory-utilities/lib/index export $(pwd) $dataFactoryId $armTemplateOutputSubDirectory
 echo "Export completed."
 
-echo "arm-template-directory=$armTemplateOutputDirectory" >> $GITHUB_OUTPUT
+echo "arm-template-directory=$armTemplateOutputDirectory" >>$GITHUB_OUTPUT
