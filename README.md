@@ -1,3 +1,10 @@
+## ⚠️ Important Notice
+
+***This repository has been archived and is no longer maintained.*** Some alternatives are:  
+  
+1. **Using the action "as is"**: You are welcome to use the action from the marketplace.  
+2. **Fork the repository**: Feel free to fork this repository and continue its development to attend your needs under the terms of the project [LICENSE](./LICENSE).
+3. **Build your own action**: Create your action by interacting with the [azure-data-factory-utilities](https://www.npmjs.com/package/@microsoft/azure-data-factory-utilities) npm package.
 # Azure Data Factory Export Action
 
 GitHub Action that exports all the Azure Data Factory resources stored in your Git repository to an ARM Template using the [Azure Data Factory utilities](https://www.npmjs.com/package/@microsoft/azure-data-factory-utilities) package.
